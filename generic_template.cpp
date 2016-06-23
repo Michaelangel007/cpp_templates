@@ -25,7 +25,9 @@ template <typename T,size_t N>
             _pArray = new T[ N ];
 
             size_t size = &_pArray[ N ] - &_pArray[ 0 ];
-            printf( "Elements: %lu,  Element Size: %u,  Array Size: %u\n", N, (unsigned) sizeof(T), (unsigned) size );
+            printf( "Elements: %lu,  Element Size (bits): %u,  Array Size: %u\n"
+                , N, (unsigned) sizeof(T) * 8, (unsigned) size
+            );
         }
 
         T& operator []( const size_t i ) {

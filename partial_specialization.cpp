@@ -25,7 +25,8 @@ template <typename T,size_t N>
             _pArray = new T[ N ];
 
             size_t size = &_pArray[ N ] - &_pArray[ 0 ];
-            printf( "Elements: %lu,  Element Size: %u,  Array Size: %u\n", N, (unsigned) sizeof(T), (unsigned) size );
+            printf( "Elements: %lu,  Element Size (bits): %u,  Array Size: %u\n"
+                , N, (unsigned) sizeof(T) * 8, (unsigned) size );
         }
 
         T& operator []( const size_t i ) {
@@ -59,7 +60,8 @@ template <size_t N>
 
             size_t size = &_pArray[ len ] - &_pArray[ 0 ];
 
-            printf( "Elements: %lu,  Element Size: %u,  Array Size: %u\n", len, (unsigned) sizeof(S), (unsigned) size );
+            printf( "Elements: %lu,  Element Size (bits): %u,  Array Size: %u\n"
+                , N, (unsigned) sizeof(S), (unsigned) size ); // sizeof()_bytes * 8_bits/byte / 8_bits/element
             printf( "Saved bytes: %lu\n", N - size );
         }
 
