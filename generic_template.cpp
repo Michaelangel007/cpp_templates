@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <typeinfo> // typeid()
 #include <cxxabi.h> // Demangle typeid().name() crap
+#include <assert.h> // assert()
 
 // Generic Template
 // ------------------------------------------------------------------------
@@ -30,7 +31,17 @@ template <typename T,size_t N>
             );
         }
 
+        // non-const object
         T& operator []( const size_t i ) {
+            assert( i < length); // DEBUG
+
+            return _pArray[ i ];
+        }
+
+        // const object
+        const T& operator []( const size_t i ) const {
+            assert( i < length); // DEBUG
+
             return _pArray[ i ];
         }
     };

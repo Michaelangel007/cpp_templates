@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <typeinfo> // typeid()
 #include <cxxabi.h> // GCC/Clang: Demangle typeid().name() crap
+#include <assert.h> // assert()
 
 // Generic Template
 // ------------------------------------------------------------------------
@@ -29,7 +30,17 @@ template <typename T,size_t N>
                 , N, (unsigned) sizeof(T) * 8, (unsigned) size );
         }
 
+        // non-const object
         T& operator []( const size_t i ) {
+            assert( i < length); // DEBUG
+
+            return _pArray[ i ];
+        }
+
+        // const object
+        const T& operator []( const size_t i ) const {
+            assert( i < length); // DEBUG
+
             return _pArray[ i ];
         }
     };
@@ -65,8 +76,20 @@ template <size_t N>
             printf( "Saved bytes: %lu\n", N - size );
         }
 
+        // non-const object
         S& operator []( const size_t i ) {
-            return _pArray[ i ];
+            assert( i < length); // DEBUG
+
+            const size_t iByte = i / 8;
+            return _pArray[ iByte ];
+        }
+
+        // const object
+        const S& operator []( const size_t i ) const {
+            assert( i < length); // DEBUG
+
+            const size_t iByte = i / 8;
+            return _pArray[ iByte ];
         }
     };
 
