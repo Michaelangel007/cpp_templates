@@ -12,7 +12,7 @@ Elements: 4096,  Element Size: 1,  Array Size: 4096
 
 vs.
 
-Partial Template Specialzation Array<bool>
+Partial Template Specialization Array<bool>
 
 ```
 Generic Template: char
