@@ -11,7 +11,7 @@ template <typename T,size_t N>
         T* _pArray;
 
     public:
-        size_t length;
+        size_t _nLength;
 
         Array()
         {
@@ -22,7 +22,7 @@ template <typename T,size_t N>
             const char* pName  = abi::__cxa_demangle( pParam, NULL, NULL, &nStatus );
             printf( "\nGeneric Template: %s\n", pName );
 
-            length  = N;
+            _nLength  = N;
             _pArray = new T[ N ];
 
             size_t size = &_pArray[ N ] - &_pArray[ 0 ];
@@ -33,14 +33,14 @@ template <typename T,size_t N>
 
         // non-const object
         T& operator []( const size_t i ) {
-            assert( i < length); // DEBUG
+            assert( i < _nLength ); // DEBUG
 
             return _pArray[ i ];
         }
 
         // const object
         const T& operator []( const size_t i ) const {
-            assert( i < length); // DEBUG
+            assert( i < _nLength ); // DEBUG
 
             return _pArray[ i ];
         }
